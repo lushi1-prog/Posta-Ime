@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <meta name="theme-color" content="#123f78">
-<title>Posta-Ime v0.2</title>
+<title>Posta-Ime v0.3</title>
 <style>
 :root{--blue:#123f78;--blue2:#245fa4;--gold:#f2c94c;--bg:#f4f7fb;--text:#142033;--muted:#66758a;--line:#e4eaf2}
 *{box-sizing:border-box}body{margin:0;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Arial,sans-serif;background:var(--bg);color:var(--text)}
@@ -14,6 +14,7 @@
 .content{padding:18px}.section-title{font-size:18px;margin:4px 0 12px}.summary{display:grid;grid-template-columns:1fr 1fr;gap:10px}
 .summary-card,.notice,.tile{font:inherit;color:inherit;cursor:pointer}.summary-card{background:#fff;border:1px solid var(--line);border-radius:18px;padding:15px;text-align:left}.summary-card b{font-size:23px;display:block}.summary-card span{font-size:12px;color:var(--muted)}
 .notice{width:100%;text-align:left;background:#fff9e8;border:1px solid #f4df9c;border-radius:17px;padding:13px;margin:14px 0;font-size:13px;line-height:1.45}
+.quickbar{display:flex;gap:8px;overflow-x:auto;padding:2px 0 14px;scrollbar-width:none}.quickbar::-webkit-scrollbar{display:none}.quickpill{white-space:nowrap;border:1px solid var(--line);background:#fff;border-radius:999px;padding:10px 13px;font:inherit;font-size:13px;font-weight:700;color:var(--blue);cursor:pointer}
 .grid{display:grid;grid-template-columns:repeat(2,1fr);gap:11px}.tile{appearance:none;border:1px solid var(--line);background:#fff;border-radius:20px;padding:16px 13px;text-align:left;min-height:126px;box-shadow:0 4px 14px rgba(31,54,84,.04)}.tile:active{transform:scale(.98)}.icon{font-size:29px}.tile strong{display:block;margin-top:10px;font-size:15px}.tile small{display:block;margin-top:4px;color:var(--muted);line-height:1.35}
 .panel{display:none;background:#fff;border:1px solid var(--line);border-radius:22px;padding:18px;margin-top:14px;position:relative}.panel.show{display:block}.close{position:absolute;right:11px;top:10px;border:0;background:#eef3f8;width:34px;height:34px;border-radius:50%;font-size:21px;cursor:pointer}.panel h3{margin:0 42px 8px 0}.panel p{color:var(--muted);line-height:1.5}.item{padding:12px;background:#f7f9fc;border-radius:13px;margin:8px 0}.action{border:0;background:var(--blue);color:#fff;border-radius:13px;padding:12px 14px;font-weight:750;margin-top:8px;cursor:pointer}
 .nav{position:fixed;bottom:0;left:50%;transform:translateX(-50%);width:min(520px,100%);background:rgba(255,255,255,.96);border-top:1px solid var(--line);display:grid;grid-template-columns:repeat(4,1fr);padding:8px 5px calc(8px + env(safe-area-inset-bottom));z-index:10}.nav button{border:0;background:transparent;text-align:center;font-size:11px;color:var(--muted);cursor:pointer}.nav span{font-size:21px;display:block;margin-bottom:3px}.nav .active{color:var(--blue);font-weight:700}
@@ -23,7 +24,7 @@ footer{text-align:center;color:#8995a5;font-size:11px;padding:26px 12px 0}
 <body>
 <div class="app">
 <header class="hero">
-<div class="top"><div class="brand"><div class="mark">✉️</div>Posta-Ime</div><div class="badge">v0.2</div></div>
+<div class="top"><div class="brand"><div class="mark">✉️</div>Posta-Ime</div><div class="badge">v0.3</div></div>
 <h1>Posta jote, në një vend.</h1>
 <p>Dokumente, fatura, njoftime dhe shërbime të rëndësishme — të sigurta dhe gjithmonë me ty.</p>
 <div class="flagline"><span class="star">★ ★ ★ ★ ★ ★</span><span>Projekt digjital për Kosovën 🇽🇰</span></div>
@@ -36,7 +37,13 @@ footer{text-align:center;color:#8995a5;font-size:11px;padding:26px 12px 0}
 </div>
 <button class="notice quick" data-key="bills">🔔 <b>KESCO</b> — Fatura e energjisë skadon pas 4 ditësh. <b>42,80 €</b></button>
 
-<h2 class="section-title">Shërbimet</h2>
+<div class="quickbar">
+  <button class="quickpill" data-key="upload">➕ Ngarko dokument</button>
+  <button class="quickpill" data-key="paylater">🕒 Paguaj më vonë</button>
+  <button class="quickpill" data-key="sharebill">👥 Ndaj faturën</button>
+</div>
+
+<h2 class="section-title">Shërbimet kryesore</h2>
 <div class="grid">
 <button class="tile" data-key="inbox"><span class="icon">📬</span><strong>Posta ime</strong><small>Letra dhe dokumente të reja.</small></button>
 <button class="tile" data-key="bills"><span class="icon">💡</span><strong>Faturat</strong><small>Energji, ujë, internet dhe të tjera.</small></button>
@@ -55,10 +62,16 @@ footer{text-align:center;color:#8995a5;font-size:11px;padding:26px 12px 0}
 <button class="tile" data-key="education"><span class="icon">🎓</span><strong>Arsimi</strong><small>Diploma, vërtetime dhe dokumente.</small></button>
 <button class="tile" data-key="notifications"><span class="icon">🔔</span><strong>Njoftimet</strong><small>Të gjitha afatet dhe njoftimet.</small></button>
 <button class="tile" data-key="search"><span class="icon">🔎</span><strong>Kërko</strong><small>Gjej dokumente shpejt.</small></button>
+<button class="tile" data-key="upload"><span class="icon">📤</span><strong>Ngarko dokument</strong><small>Ruaj dokumentet e tua.</small></button>
+<button class="tile" data-key="receiptsauto"><span class="icon">🧾</span><strong>Kuponë automatikë</strong><small>Merr kuponët direkt nga bizneset.</small></button>
+<button class="tile" data-key="paylater"><span class="icon">🕒</span><strong>Paguaj më vonë</strong><small>Zgjidh datën e pagesës.</small></button>
+<button class="tile" data-key="sharebill"><span class="icon">👥</span><strong>Ndaj faturën</strong><small>Ndaje pagesën me familjen.</small></button>
+<button class="tile" data-key="healthvisit"><span class="icon">📍</span><strong>Terminet</strong><small>Kalendari, lokacioni dhe kujtesat.</small></button>
+<button class="tile" data-key="senders"><span class="icon">🏢</span><strong>Dërguesit</strong><small>Shiko kush dërgon në Posta-Ime.</small></button>
 <button class="tile" data-key="profile"><span class="icon">🔐</span><strong>Siguria</strong><small>Identiteti, hyrja dhe privatësia.</small></button>
 </div>
 <div class="panel" id="panel"><button class="close" id="close">×</button><div id="panelContent"></div></div>
-<footer>Posta-Ime © 2026 · Prototip konceptual për Kosovën · v0.2</footer>
+<footer>Posta-Ime © 2026 · Prototip konceptual për Kosovën · v0.3</footer>
 </main>
 <nav class="nav">
 <button id="navHome" class="active"><span>🏠</span>Kryefaqja</button>
@@ -86,10 +99,16 @@ vehicle:["Automjeti","Dokumente të automjetit dhe afate të rëndësishme.",["R
 education:["Arsimi","Dokumentet e arsimit në një arkiv personal.",["Diploma universitare","Vërtetim shkolle","Certifikata trajnimi"],"Hap dokumentet"],
 notifications:["Njoftimet","Të gjitha afatet e rëndësishme në një pamje.",["Faturë · 4 ditë","Sigurim · 47 ditë","Termini shëndetësor · 25 ditë"],"Shiko të gjitha"],
 search:["Kërko","Kërko sipas emrit, institucionit ose datës.",["Shembull: KESCO","Shembull: diploma","Shembull: gusht 2026"],"Fillo kërkimin"],
+upload:["Ngarko dokument","Shto dokumente personale në arkivin tënd.",["Zgjidh dokumentin","Emërto dokumentin","Ruaje në Arkiv"],"Ngarko dokument"],
+receiptsauto:["Kuponë automatikë","Merr kuponët digjitalë direkt nga bizneset e lidhura.",["Market","Farmaci","Dyqan elektronik"],"Shiko kuponët"],
+paylater:["Paguaj më vonë","Zgjidh datën kur dëshiron të paguhet fatura.",["Sot","Në datën e skadimit","Zgjidh një datë"],"Cakto pagesën"],
+sharebill:["Ndaj faturën","Ndaje një faturë me një familjar pa ndarë llogarinë bankare.",["Zgjidh faturën","Zgjidh personin","Përcakto shumën"],"Ndaj faturën"],
+healthvisit:["Terminet","Menaxho takimet dhe kujtesat.",["22 shtator · 10:30","Shto në kalendar","Shiko lokacionin"],"Hap terminin"],
+senders:["Dërguesit","Shiko institucionet dhe bizneset që lidhen me Posta-Ime.",["KESCO","Komuna","Banka","Sigurimet"],"Shiko dërguesit"],
 profile:["Siguria","Kontroll mbi llogarinë dhe privatësinë.",["Hyrje e sigurt","Pajisjet e mia","Lejet dhe privatësia"],"Hap sigurinë"]
 };
 const results={
-inbox:"Posta u hap në versionin demo.",bills:"Faturat u hapën.",pay:"Demo: pagesa u konfirmua dhe kuponi u ruajt në Arkiv.",government:"Dokumentet institucionale u hapën.",bank:"Dokumentet bankare u hapën.",salary:"Fletëpagesat u hapën.",contracts:"Kontratat u hapën.",sign:"Demo: dokumenti u përgatit për identifikim dhe nënshkrim.",receipts:"Kuponët u hapën.",archive:"Arkivi personal u hap.",family:"Demo: mund të caktohet një autorizim i kufizuar për një familjar.",insurance:"Policat e sigurimit u hapën.",health:"Dokumentet shëndetësore u hapën me qasje të mbrojtur.",vehicle:"Dokumentet e automjetit u hapën.",education:"Dokumentet e arsimit u hapën.",notifications:"Të gjitha njoftimet u hapën.",search:"Demo: kërkimi për “KESCO” gjeti 4 dokumente.",profile:"Cilësimet e sigurisë u hapën."
+inbox:"Posta u hap në versionin demo.",bills:"Faturat u hapën.",pay:"Demo: pagesa u konfirmua dhe kuponi u ruajt në Arkiv.",government:"Dokumentet institucionale u hapën.",bank:"Dokumentet bankare u hapën.",salary:"Fletëpagesat u hapën.",contracts:"Kontratat u hapën.",sign:"Demo: dokumenti u përgatit për identifikim dhe nënshkrim.",receipts:"Kuponët u hapën.",archive:"Arkivi personal u hap.",family:"Demo: mund të caktohet një autorizim i kufizuar për një familjar.",insurance:"Policat e sigurimit u hapën.",health:"Dokumentet shëndetësore u hapën me qasje të mbrojtur.",vehicle:"Dokumentet e automjetit u hapën.",education:"Dokumentet e arsimit u hapën.",notifications:"Të gjitha njoftimet u hapën.",search:"Demo: kërkimi për “KESCO” gjeti 4 dokumente.",upload:"Demo: dokumenti u zgjodh dhe është gati për ruajtje.",receiptsauto:"Kuponët automatikë u hapën.",paylater:"Demo: pagesa u caktua për datën e skadimit.",sharebill:"Demo: fatura u nda me një familjar.",healthvisit:"Termini u hap dhe mund të shtohet në kalendar.",senders:"Lista e dërguesve u hap.",profile:"Cilësimet e sigurisë u hapën."
 };
 function openPanel(key){
  const d=data[key];
@@ -98,12 +117,16 @@ function openPanel(key){
  document.getElementById("panelAction").onclick=()=>document.getElementById("actionResult").innerHTML=`<div class="item" style="margin-top:12px"><b>✓</b> ${results[key]}</div>`;
  document.getElementById("panel").scrollIntoView({behavior:"smooth",block:"center"});
 }
-document.querySelectorAll(".tile,.quick").forEach(el=>el.addEventListener("click",()=>openPanel(el.dataset.key)));
+document.querySelectorAll(".tile,.quick,.quickpill").forEach(el=>el.addEventListener("click",()=>openPanel(el.dataset.key)));
 document.getElementById("close").onclick=()=>document.getElementById("panel").classList.remove("show");
-document.getElementById("navHome").onclick=()=>window.scrollTo({top:0,behavior:"smooth"});
-document.getElementById("navInbox").onclick=()=>openPanel("inbox");
-document.getElementById("navNotifications").onclick=()=>openPanel("notifications");
-document.getElementById("navProfile").onclick=()=>openPanel("profile");
+function setNavActive(id){
+ document.querySelectorAll(".nav button").forEach(b=>b.classList.remove("active"));
+ document.getElementById(id).classList.add("active");
+}
+document.getElementById("navHome").onclick=()=>{setNavActive("navHome");window.scrollTo({top:0,behavior:"smooth"});}
+document.getElementById("navInbox").onclick=()=>{setNavActive("navInbox");openPanel("inbox");}
+document.getElementById("navNotifications").onclick=()=>{setNavActive("navNotifications");openPanel("notifications");}
+document.getElementById("navProfile").onclick=()=>{setNavActive("navProfile");openPanel("profile");}
 </script>
 </body>
 </html>
