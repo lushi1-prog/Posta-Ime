@@ -1,0 +1,109 @@
+<!doctype html>
+<html lang="sq">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#123f78">
+<title>Posta-Ime v0.2</title>
+<style>
+:root{--blue:#123f78;--blue2:#245fa4;--gold:#f2c94c;--bg:#f4f7fb;--text:#142033;--muted:#66758a;--line:#e4eaf2}
+*{box-sizing:border-box}body{margin:0;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Arial,sans-serif;background:var(--bg);color:var(--text)}
+.app{max-width:520px;margin:auto;min-height:100vh;padding-bottom:86px}.hero{background:linear-gradient(145deg,var(--blue),var(--blue2));color:#fff;padding:22px 18px 26px;border-radius:0 0 30px 30px;box-shadow:0 12px 30px rgba(18,63,120,.16)}
+.top{display:flex;justify-content:space-between;align-items:center}.brand{display:flex;gap:10px;align-items:center;font-size:23px;font-weight:850}.mark{width:42px;height:42px;border-radius:14px;background:#fff;color:var(--blue);display:grid;place-items:center;font-size:23px}.badge{font-size:11px;padding:6px 9px;border:1px solid rgba(255,255,255,.3);border-radius:999px}
+.hero h1{font-size:29px;margin:25px 0 7px;letter-spacing:-.7px}.hero p{margin:0;color:rgba(255,255,255,.83);line-height:1.45}.flagline{margin-top:18px;display:flex;align-items:center;gap:8px;font-size:12px}.star{color:var(--gold)}
+.content{padding:18px}.section-title{font-size:18px;margin:4px 0 12px}.summary{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.summary-card,.notice,.tile{font:inherit;color:inherit;cursor:pointer}.summary-card{background:#fff;border:1px solid var(--line);border-radius:18px;padding:15px;text-align:left}.summary-card b{font-size:23px;display:block}.summary-card span{font-size:12px;color:var(--muted)}
+.notice{width:100%;text-align:left;background:#fff9e8;border:1px solid #f4df9c;border-radius:17px;padding:13px;margin:14px 0;font-size:13px;line-height:1.45}
+.grid{display:grid;grid-template-columns:repeat(2,1fr);gap:11px}.tile{appearance:none;border:1px solid var(--line);background:#fff;border-radius:20px;padding:16px 13px;text-align:left;min-height:126px;box-shadow:0 4px 14px rgba(31,54,84,.04)}.tile:active{transform:scale(.98)}.icon{font-size:29px}.tile strong{display:block;margin-top:10px;font-size:15px}.tile small{display:block;margin-top:4px;color:var(--muted);line-height:1.35}
+.panel{display:none;background:#fff;border:1px solid var(--line);border-radius:22px;padding:18px;margin-top:14px;position:relative}.panel.show{display:block}.close{position:absolute;right:11px;top:10px;border:0;background:#eef3f8;width:34px;height:34px;border-radius:50%;font-size:21px;cursor:pointer}.panel h3{margin:0 42px 8px 0}.panel p{color:var(--muted);line-height:1.5}.item{padding:12px;background:#f7f9fc;border-radius:13px;margin:8px 0}.action{border:0;background:var(--blue);color:#fff;border-radius:13px;padding:12px 14px;font-weight:750;margin-top:8px;cursor:pointer}
+.nav{position:fixed;bottom:0;left:50%;transform:translateX(-50%);width:min(520px,100%);background:rgba(255,255,255,.96);border-top:1px solid var(--line);display:grid;grid-template-columns:repeat(4,1fr);padding:8px 5px calc(8px + env(safe-area-inset-bottom));z-index:10}.nav button{border:0;background:transparent;text-align:center;font-size:11px;color:var(--muted);cursor:pointer}.nav span{font-size:21px;display:block;margin-bottom:3px}.nav .active{color:var(--blue);font-weight:700}
+footer{text-align:center;color:#8995a5;font-size:11px;padding:26px 12px 0}
+</style>
+</head>
+<body>
+<div class="app">
+<header class="hero">
+<div class="top"><div class="brand"><div class="mark">✉️</div>Posta-Ime</div><div class="badge">v0.2</div></div>
+<h1>Posta jote, në një vend.</h1>
+<p>Dokumente, fatura, njoftime dhe shërbime të rëndësishme — të sigurta dhe gjithmonë me ty.</p>
+<div class="flagline"><span class="star">★ ★ ★ ★ ★ ★</span><span>Projekt digjital për Kosovën 🇽🇰</span></div>
+</header>
+<main class="content">
+<h2 class="section-title">Mirë se erdhe, Arben</h2>
+<div class="summary">
+<button class="summary-card quick" data-key="inbox"><b>3</b><span>Dokumente të reja</span></button>
+<button class="summary-card quick" data-key="bills"><b>2</b><span>Fatura për pagesë</span></button>
+</div>
+<button class="notice quick" data-key="bills">🔔 <b>KESCO</b> — Fatura e energjisë skadon pas 4 ditësh. <b>42,80 €</b></button>
+
+<h2 class="section-title">Shërbimet</h2>
+<div class="grid">
+<button class="tile" data-key="inbox"><span class="icon">📬</span><strong>Posta ime</strong><small>Letra dhe dokumente të reja.</small></button>
+<button class="tile" data-key="bills"><span class="icon">💡</span><strong>Faturat</strong><small>Energji, ujë, internet dhe të tjera.</small></button>
+<button class="tile" data-key="pay"><span class="icon">💳</span><strong>Paguaj</strong><small>Paguaj dhe ruaj historikun.</small></button>
+<button class="tile" data-key="government"><span class="icon">🏛️</span><strong>Institucionet</strong><small>Njoftime dhe dokumente zyrtare.</small></button>
+<button class="tile" data-key="bank"><span class="icon">🏦</span><strong>Banka</strong><small>Dokumente dhe njoftime bankare.</small></button>
+<button class="tile" data-key="salary"><span class="icon">💼</span><strong>Paga ime</strong><small>Fletëpagesat në një vend.</small></button>
+<button class="tile" data-key="contracts"><span class="icon">📑</span><strong>Kontratat</strong><small>Ruaj dhe menaxho kontratat.</small></button>
+<button class="tile" data-key="sign"><span class="icon">✍️</span><strong>Nënshkruaj</strong><small>Dokumente për nënshkrim digjital.</small></button>
+<button class="tile" data-key="receipts"><span class="icon">🧾</span><strong>Kuponët</strong><small>Kuponë dhe dëshmi pagese.</small></button>
+<button class="tile" data-key="archive"><span class="icon">🗄️</span><strong>Arkivi im</strong><small>Dokumentet e rëndësishme.</small></button>
+<button class="tile" data-key="family"><span class="icon">👨‍👩‍👧</span><strong>Familja</strong><small>Ndihmo një familjar me leje.</small></button>
+<button class="tile" data-key="insurance"><span class="icon">🛡️</span><strong>Sigurimet</strong><small>Polica, njoftime dhe afate.</small></button>
+<button class="tile" data-key="health"><span class="icon">🏥</span><strong>Shëndetësia</strong><small>Dokumente, termine dhe njoftime.</small></button>
+<button class="tile" data-key="vehicle"><span class="icon">🚗</span><strong>Automjeti</strong><small>Regjistrim, sigurim dhe dokumente.</small></button>
+<button class="tile" data-key="education"><span class="icon">🎓</span><strong>Arsimi</strong><small>Diploma, vërtetime dhe dokumente.</small></button>
+<button class="tile" data-key="notifications"><span class="icon">🔔</span><strong>Njoftimet</strong><small>Të gjitha afatet dhe njoftimet.</small></button>
+<button class="tile" data-key="search"><span class="icon">🔎</span><strong>Kërko</strong><small>Gjej dokumente shpejt.</small></button>
+<button class="tile" data-key="profile"><span class="icon">🔐</span><strong>Siguria</strong><small>Identiteti, hyrja dhe privatësia.</small></button>
+</div>
+<div class="panel" id="panel"><button class="close" id="close">×</button><div id="panelContent"></div></div>
+<footer>Posta-Ime © 2026 · Prototip konceptual për Kosovën · v0.2</footer>
+</main>
+<nav class="nav">
+<button id="navHome" class="active"><span>🏠</span>Kryefaqja</button>
+<button id="navInbox"><span>📬</span>Posta</button>
+<button id="navNotifications"><span>🔔</span>Njoftimet</button>
+<button id="navProfile"><span>👤</span>Profili</button>
+</nav>
+</div>
+<script>
+const data={
+inbox:["Posta ime","Të gjitha letrat e rëndësishme në një vend.",["KESCO · Fatura e gushtit","Komuna · Njoftim i ri","Banka · Dokument mujor"],"Hap postën"],
+bills:["Faturat","Shiko afatet dhe gjendjen e faturave.",["Energji · 42,80 € · 4 ditë","Internet · 19,99 € · 9 ditë","Ujë · Paguar"],"Shiko faturat"],
+pay:["Paguaj","Prototip i pagesave nga Posta-Ime.",["Zgjidh faturën","Zgjidh mënyrën e pagesës","Merr konfirmimin"],"Vazhdo"],
+government:["Institucionet","Dokumente dhe njoftime nga institucionet.",["Komuna","Administrata Tatimore","Shërbime publike"],"Shiko dokumentet"],
+bank:["Banka","Dokumentet bankare pa letra.",["Njoftime","Ekstrakte","Kontrata"],"Hap bankën"],
+salary:["Paga ime","Ruaj fletëpagesat sipas muajit.",["Gusht 2026","Korrik 2026","Qershor 2026"],"Shiko fletëpagesat"],
+contracts:["Kontratat","Kontratat e tua të organizuara.",["Internet","Sigurim","Punë"],"Hap kontratat"],
+sign:["Nënshkruaj","Dokumentet që presin miratimin tënd.",["1 dokument në pritje","Identifikim i sigurt","Konfirmim pas nënshkrimit"],"Shiko dokumentin"],
+receipts:["Kuponët","Kuponë dhe dëshmi digjitale.",["Pagesa e energjisë","Pagesa e internetit","Pagesa komunale"],"Shiko kuponët"],
+archive:["Arkivi im","Ruaj dokumente që dëshiron t'i kesh gjithmonë.",["Kontrata","Dëftesa","Dokumente personale"],"Hap arkivin"],
+family:["Familja / Autorizimi","Ide e veçantë për familjet dhe diasporën.",["Jep leje të kufizuar","Zgjidh çfarë mund të shihet","Hiq lejen kur të duash"],"Menaxho autorizimet"],
+insurance:["Sigurimet","Policat dhe afatet e sigurimit në një vend.",["Sigurimi i makinës · skadon 14 tetor","Sigurimi i shtëpisë · aktiv","Dokument i ri nga siguruesi"],"Hap sigurimet"],
+health:["Shëndetësia","Dokumente dhe njoftime shëndetësore të ruajtura me kontroll të veçantë.",["Termini · 22 shtator 10:30","Raport mjekësor · i ri","Dokumentet private · të mbrojtura"],"Hap shëndetësinë"],
+vehicle:["Automjeti","Dokumente të automjetit dhe afate të rëndësishme.",["Regjistrimi · skadon 30 nëntor","Sigurimi · aktiv","Kontroll teknik · 12 nëntor"],"Shiko automjetin"],
+education:["Arsimi","Dokumentet e arsimit në një arkiv personal.",["Diploma universitare","Vërtetim shkolle","Certifikata trajnimi"],"Hap dokumentet"],
+notifications:["Njoftimet","Të gjitha afatet e rëndësishme në një pamje.",["Faturë · 4 ditë","Sigurim · 47 ditë","Termini shëndetësor · 25 ditë"],"Shiko të gjitha"],
+search:["Kërko","Kërko sipas emrit, institucionit ose datës.",["Shembull: KESCO","Shembull: diploma","Shembull: gusht 2026"],"Fillo kërkimin"],
+profile:["Siguria","Kontroll mbi llogarinë dhe privatësinë.",["Hyrje e sigurt","Pajisjet e mia","Lejet dhe privatësia"],"Hap sigurinë"]
+};
+const results={
+inbox:"Posta u hap në versionin demo.",bills:"Faturat u hapën.",pay:"Demo: pagesa u konfirmua dhe kuponi u ruajt në Arkiv.",government:"Dokumentet institucionale u hapën.",bank:"Dokumentet bankare u hapën.",salary:"Fletëpagesat u hapën.",contracts:"Kontratat u hapën.",sign:"Demo: dokumenti u përgatit për identifikim dhe nënshkrim.",receipts:"Kuponët u hapën.",archive:"Arkivi personal u hap.",family:"Demo: mund të caktohet një autorizim i kufizuar për një familjar.",insurance:"Policat e sigurimit u hapën.",health:"Dokumentet shëndetësore u hapën me qasje të mbrojtur.",vehicle:"Dokumentet e automjetit u hapën.",education:"Dokumentet e arsimit u hapën.",notifications:"Të gjitha njoftimet u hapën.",search:"Demo: kërkimi për “KESCO” gjeti 4 dokumente.",profile:"Cilësimet e sigurisë u hapën."
+};
+function openPanel(key){
+ const d=data[key];
+ document.getElementById("panelContent").innerHTML=`<h3>${d[0]}</h3><p>${d[1]}</p>${d[2].map(x=>`<div class="item">${x}</div>`).join("")}<button class="action" id="panelAction">${d[3]}</button><div id="actionResult"></div>`;
+ document.getElementById("panel").classList.add("show");
+ document.getElementById("panelAction").onclick=()=>document.getElementById("actionResult").innerHTML=`<div class="item" style="margin-top:12px"><b>✓</b> ${results[key]}</div>`;
+ document.getElementById("panel").scrollIntoView({behavior:"smooth",block:"center"});
+}
+document.querySelectorAll(".tile,.quick").forEach(el=>el.addEventListener("click",()=>openPanel(el.dataset.key)));
+document.getElementById("close").onclick=()=>document.getElementById("panel").classList.remove("show");
+document.getElementById("navHome").onclick=()=>window.scrollTo({top:0,behavior:"smooth"});
+document.getElementById("navInbox").onclick=()=>openPanel("inbox");
+document.getElementById("navNotifications").onclick=()=>openPanel("notifications");
+document.getElementById("navProfile").onclick=()=>openPanel("profile");
+</script>
+</body>
+</html>
