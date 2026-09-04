@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <meta name="theme-color" content="#123f78">
-<title>Posta-Ime v0.3</title>
+<title>Posta-Ime v0.4</title>
 <style>
 :root{--blue:#123f78;--blue2:#245fa4;--gold:#f2c94c;--bg:#f4f7fb;--text:#142033;--muted:#66758a;--line:#e4eaf2}
 *{box-sizing:border-box}body{margin:0;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Arial,sans-serif;background:var(--bg);color:var(--text)}
@@ -18,13 +18,28 @@
 .grid{display:grid;grid-template-columns:repeat(2,1fr);gap:11px}.tile{appearance:none;border:1px solid var(--line);background:#fff;border-radius:20px;padding:16px 13px;text-align:left;min-height:126px;box-shadow:0 4px 14px rgba(31,54,84,.04)}.tile:active{transform:scale(.98)}.icon{font-size:29px}.tile strong{display:block;margin-top:10px;font-size:15px}.tile small{display:block;margin-top:4px;color:var(--muted);line-height:1.35}
 .panel{display:none;background:#fff;border:1px solid var(--line);border-radius:22px;padding:18px;margin-top:14px;position:relative}.panel.show{display:block}.close{position:absolute;right:11px;top:10px;border:0;background:#eef3f8;width:34px;height:34px;border-radius:50%;font-size:21px;cursor:pointer}.panel h3{margin:0 42px 8px 0}.panel p{color:var(--muted);line-height:1.5}.item{padding:12px;background:#f7f9fc;border-radius:13px;margin:8px 0}.action{border:0;background:var(--blue);color:#fff;border-radius:13px;padding:12px 14px;font-weight:750;margin-top:8px;cursor:pointer}
 .nav{position:fixed;bottom:0;left:50%;transform:translateX(-50%);width:min(520px,100%);background:rgba(255,255,255,.96);border-top:1px solid var(--line);display:grid;grid-template-columns:repeat(4,1fr);padding:8px 5px calc(8px + env(safe-area-inset-bottom));z-index:10}.nav button{border:0;background:transparent;text-align:center;font-size:11px;color:var(--muted);cursor:pointer}.nav span{font-size:21px;display:block;margin-bottom:3px}.nav .active{color:var(--blue);font-weight:700}
+
+.family-hero{background:linear-gradient(145deg,#eef5ff,#fff);border:1px solid #d9e6f6;border-radius:18px;padding:15px;margin:10px 0}
+.family-hero strong{display:block;font-size:16px;margin-bottom:4px}.family-hero small{color:var(--muted);line-height:1.4}
+.person{display:flex;align-items:center;gap:11px;padding:12px;border:1px solid var(--line);border-radius:15px;margin:9px 0;background:#fff}
+.avatar{width:42px;height:42px;border-radius:50%;background:#eef3f8;display:grid;place-items:center;font-size:21px}
+.person-info{flex:1}.person-info b{display:block}.person-info small{color:var(--muted)}
+.status{font-size:11px;font-weight:800;background:#eaf7ef;color:#267447;border-radius:999px;padding:5px 8px}
+.permission{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:11px 0;border-bottom:1px solid var(--line)}
+.permission:last-child{border-bottom:0}.permission span{font-size:14px}.permission input{width:20px;height:20px;accent-color:var(--blue)}
+.family-label{display:block;font-size:12px;font-weight:800;margin:14px 0 6px;color:var(--muted);text-transform:uppercase;letter-spacing:.4px}
+.family-select,.family-date{width:100%;border:1px solid var(--line);border-radius:12px;padding:11px 12px;background:#fff;font:inherit;color:var(--text)}
+.family-actions{display:flex;gap:8px;flex-wrap:wrap;margin-top:13px}.secondary{border:1px solid var(--line);background:#fff;color:var(--blue);border-radius:13px;padding:11px 13px;font-weight:750;cursor:pointer}
+.danger{border:1px solid #f1c9c9;background:#fff4f4;color:#9b3030;border-radius:13px;padding:11px 13px;font-weight:750;cursor:pointer}
+.demo-note{font-size:12px;color:var(--muted);background:#f7f9fc;border-radius:12px;padding:10px;margin-top:10px;line-height:1.4}
+
 footer{text-align:center;color:#8995a5;font-size:11px;padding:26px 12px 0}
 </style>
 </head>
 <body>
 <div class="app">
 <header class="hero">
-<div class="top"><div class="brand"><div class="mark">✉️</div>Posta-Ime</div><div class="badge">v0.3</div></div>
+<div class="top"><div class="brand"><div class="mark">✉️</div>Posta-Ime</div><div class="badge">v0.4</div></div>
 <h1>Posta jote, në një vend.</h1>
 <p>Dokumente, fatura, njoftime dhe shërbime të rëndësishme — të sigurta dhe gjithmonë me ty.</p>
 <div class="flagline"><span class="star">★ ★ ★ ★ ★ ★</span><span>Projekt digjital për Kosovën 🇽🇰</span></div>
@@ -41,6 +56,7 @@ footer{text-align:center;color:#8995a5;font-size:11px;padding:26px 12px 0}
   <button class="quickpill" data-key="upload">➕ Ngarko dokument</button>
   <button class="quickpill" data-key="paylater">🕒 Paguaj më vonë</button>
   <button class="quickpill" data-key="sharebill">👥 Ndaj faturën</button>
+  <button class="quickpill" data-key="family">🌍 Familja & Diaspora</button>
 </div>
 
 <h2 class="section-title">Shërbimet kryesore</h2>
@@ -55,7 +71,7 @@ footer{text-align:center;color:#8995a5;font-size:11px;padding:26px 12px 0}
 <button class="tile" data-key="sign"><span class="icon">✍️</span><strong>Nënshkruaj</strong><small>Dokumente për nënshkrim digjital.</small></button>
 <button class="tile" data-key="receipts"><span class="icon">🧾</span><strong>Kuponët</strong><small>Kuponë dhe dëshmi pagese.</small></button>
 <button class="tile" data-key="archive"><span class="icon">🗄️</span><strong>Arkivi im</strong><small>Dokumentet e rëndësishme.</small></button>
-<button class="tile" data-key="family"><span class="icon">👨‍👩‍👧</span><strong>Familja</strong><small>Ndihmo një familjar me leje.</small></button>
+<button class="tile" data-key="family"><span class="icon">🌍</span><strong>Familja & Diaspora</strong><small>Ndihmo familjen me leje të kufizuara dhe të sigurta.</small></button>
 <button class="tile" data-key="insurance"><span class="icon">🛡️</span><strong>Sigurimet</strong><small>Polica, njoftime dhe afate.</small></button>
 <button class="tile" data-key="health"><span class="icon">🏥</span><strong>Shëndetësia</strong><small>Dokumente, termine dhe njoftime.</small></button>
 <button class="tile" data-key="vehicle"><span class="icon">🚗</span><strong>Automjeti</strong><small>Regjistrim, sigurim dhe dokumente.</small></button>
@@ -71,7 +87,7 @@ footer{text-align:center;color:#8995a5;font-size:11px;padding:26px 12px 0}
 <button class="tile" data-key="profile"><span class="icon">🔐</span><strong>Siguria</strong><small>Identiteti, hyrja dhe privatësia.</small></button>
 </div>
 <div class="panel" id="panel"><button class="close" id="close">×</button><div id="panelContent"></div></div>
-<footer>Posta-Ime © 2026 · Prototip konceptual për Kosovën · v0.3</footer>
+<footer>Posta-Ime © 2026 · Prototip konceptual për Kosovën · v0.4</footer>
 </main>
 <nav class="nav">
 <button id="navHome" class="active"><span>🏠</span>Kryefaqja</button>
@@ -92,7 +108,7 @@ contracts:["Kontratat","Kontratat e tua të organizuara.",["Internet","Sigurim",
 sign:["Nënshkruaj","Dokumentet që presin miratimin tënd.",["1 dokument në pritje","Identifikim i sigurt","Konfirmim pas nënshkrimit"],"Shiko dokumentin"],
 receipts:["Kuponët","Kuponë dhe dëshmi digjitale.",["Pagesa e energjisë","Pagesa e internetit","Pagesa komunale"],"Shiko kuponët"],
 archive:["Arkivi im","Ruaj dokumente që dëshiron t'i kesh gjithmonë.",["Kontrata","Dëftesa","Dokumente personale"],"Hap arkivin"],
-family:["Familja / Autorizimi","Ide e veçantë për familjet dhe diasporën.",["Jep leje të kufizuar","Zgjidh çfarë mund të shihet","Hiq lejen kur të duash"],"Menaxho autorizimet"],
+family:["Familja & Diaspora","Ndihmo një familjar në Kosovë ose jashtë vendit me qasje të kufizuar dhe të kontrolluar.",["Zgjidh personin","Cakto lejet","Vendos afatin","Hiq qasjen kur të duash"],"Menaxho autorizimet"],
 insurance:["Sigurimet","Policat dhe afatet e sigurimit në një vend.",["Sigurimi i makinës · skadon 14 tetor","Sigurimi i shtëpisë · aktiv","Dokument i ri nga siguruesi"],"Hap sigurimet"],
 health:["Shëndetësia","Dokumente dhe njoftime shëndetësore të ruajtura me kontroll të veçantë.",["Termini · 22 shtator 10:30","Raport mjekësor · i ri","Dokumentet private · të mbrojtura"],"Hap shëndetësinë"],
 vehicle:["Automjeti","Dokumente të automjetit dhe afate të rëndësishme.",["Regjistrimi · skadon 30 nëntor","Sigurimi · aktiv","Kontroll teknik · 12 nëntor"],"Shiko automjetin"],
@@ -110,7 +126,83 @@ profile:["Siguria","Kontroll mbi llogarinë dhe privatësinë.",["Hyrje e sigurt
 const results={
 inbox:"Posta u hap në versionin demo.",bills:"Faturat u hapën.",pay:"Demo: pagesa u konfirmua dhe kuponi u ruajt në Arkiv.",government:"Dokumentet institucionale u hapën.",bank:"Dokumentet bankare u hapën.",salary:"Fletëpagesat u hapën.",contracts:"Kontratat u hapën.",sign:"Demo: dokumenti u përgatit për identifikim dhe nënshkrim.",receipts:"Kuponët u hapën.",archive:"Arkivi personal u hap.",family:"Demo: mund të caktohet një autorizim i kufizuar për një familjar.",insurance:"Policat e sigurimit u hapën.",health:"Dokumentet shëndetësore u hapën me qasje të mbrojtur.",vehicle:"Dokumentet e automjetit u hapën.",education:"Dokumentet e arsimit u hapën.",notifications:"Të gjitha njoftimet u hapën.",search:"Demo: kërkimi për “KESCO” gjeti 4 dokumente.",upload:"Demo: dokumenti u zgjodh dhe është gati për ruajtje.",receiptsauto:"Kuponët automatikë u hapën.",paylater:"Demo: pagesa u caktua për datën e skadimit.",sharebill:"Demo: fatura u nda me një familjar.",healthvisit:"Termini u hap dhe mund të shtohet në kalendar.",senders:"Lista e dërguesve u hap.",profile:"Cilësimet e sigurisë u hapën."
 };
+
+function openFamilyPanel(){
+ const panel=document.getElementById("panel");
+ const content=document.getElementById("panelContent");
+ content.innerHTML=`
+   <h3>🌍 Familja & Diaspora</h3>
+   <p>Ndihmo një familjar pa i dhënë qasje të plotë në llogarinë tënde.</p>
+
+   <div class="family-hero">
+     <strong>Shembull: Prishtinë ↔ Suedi</strong>
+     <small>Një prind në Kosovë mund t’i japë një familjari jashtë vendit leje vetëm për dokumentet ose faturat që zgjedh.</small>
+   </div>
+
+   <span class="family-label">Autorizim aktiv</span>
+   <div class="person">
+     <div class="avatar">👩</div>
+     <div class="person-info"><b>Nëna · Prishtinë</b><small>Pronare e llogarisë</small></div>
+     <span class="status">Aktive</span>
+   </div>
+   <div class="person">
+     <div class="avatar">👨‍💼</div>
+     <div class="person-info"><b>Arben · Suedi</b><small>Familjar i autorizuar</small></div>
+     <span class="status">Leje e kufizuar</span>
+   </div>
+
+   <span class="family-label">Çfarë mund të bëjë familjari?</span>
+   <div class="item">
+     <label class="permission"><span>📬 Shiko dokumentet</span><input id="permDocs" type="checkbox" checked></label>
+     <label class="permission"><span>💡 Shiko faturat</span><input id="permBills" type="checkbox" checked></label>
+     <label class="permission"><span>💳 Paguaj faturat</span><input id="permPay" type="checkbox"></label>
+     <label class="permission"><span>🛡️ Shiko sigurimet</span><input id="permInsurance" type="checkbox"></label>
+   </div>
+
+   <span class="family-label">Afati i autorizimit</span>
+   <select id="familyExpiry" class="family-select">
+     <option value="30 ditë">30 ditë</option>
+     <option value="3 muaj">3 muaj</option>
+     <option value="1 vit" selected>1 vit</option>
+     <option value="Pa afat">Pa afat</option>
+   </select>
+
+   <div class="family-actions">
+     <button class="action" id="saveFamily">Ruaj autorizimin</button>
+     <button class="secondary" id="newFamily">+ Shto familjar</button>
+     <button class="danger" id="revokeFamily">Hiq autorizimin</button>
+   </div>
+   <div id="familyResult"></div>
+   <div class="demo-note">🔐 Para aktivizimit, identiteti verifikohet. Pronari mund t’i ndryshojë ose t’i heqë lejet në çdo kohë.</div>
+ `;
+ panel.classList.add("show");
+
+ document.getElementById("saveFamily").onclick=()=>{
+   const perms=[];
+   if(document.getElementById("permDocs").checked) perms.push("dokumentet");
+   if(document.getElementById("permBills").checked) perms.push("faturat");
+   if(document.getElementById("permPay").checked) perms.push("pagesat");
+   if(document.getElementById("permInsurance").checked) perms.push("sigurimet");
+   const expiry=document.getElementById("familyExpiry").value;
+   document.getElementById("familyResult").innerHTML=
+     `<div class="item" style="margin-top:12px"><b>✓ Autorizimi u ruajt.</b><br><small>Qasje: ${perms.length?perms.join(", "):"asnjë leje"} · Afati: ${expiry}</small></div>`;
+ };
+
+ document.getElementById("newFamily").onclick=()=>{
+   document.getElementById("familyResult").innerHTML=
+     `<div class="item" style="margin-top:12px"><b>Demo:</b> Ftesa për një familjar të ri është gati për verifikim.</div>`;
+ };
+
+ document.getElementById("revokeFamily").onclick=()=>{
+   document.getElementById("familyResult").innerHTML=
+     `<div class="item" style="margin-top:12px;background:#fff4f4"><b>Autorizimi u hoq.</b><br><small>Familjari nuk ka më qasje në dokumente ose fatura.</small></div>`;
+ };
+
+ panel.scrollIntoView({behavior:"smooth",block:"center"});
+}
+
 function openPanel(key){
+ if(key==="family"){openFamilyPanel();return;}
  const d=data[key];
  document.getElementById("panelContent").innerHTML=`<h3>${d[0]}</h3><p>${d[1]}</p>${d[2].map(x=>`<div class="item">${x}</div>`).join("")}<button class="action" id="panelAction">${d[3]}</button><div id="actionResult"></div>`;
  document.getElementById("panel").classList.add("show");
