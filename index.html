@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <meta name="theme-color" content="#123f78">
-<title>Posta-Ime v0.4</title>
+<title>Posta-Ime v0.4.2</title>
 <style>
 :root{--blue:#123f78;--blue2:#245fa4;--gold:#f2c94c;--bg:#f4f7fb;--text:#142033;--muted:#66758a;--line:#e4eaf2}
 *{box-sizing:border-box}body{margin:0;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Arial,sans-serif;background:var(--bg);color:var(--text)}
@@ -16,7 +16,11 @@
 .notice{width:100%;text-align:left;background:#fff9e8;border:1px solid #f4df9c;border-radius:17px;padding:13px;margin:14px 0;font-size:13px;line-height:1.45}
 .quickbar{display:flex;gap:8px;overflow-x:auto;padding:2px 0 14px;scrollbar-width:none}.quickbar::-webkit-scrollbar{display:none}.quickpill{white-space:nowrap;border:1px solid var(--line);background:#fff;border-radius:999px;padding:10px 13px;font:inherit;font-size:13px;font-weight:700;color:var(--blue);cursor:pointer}
 .grid{display:grid;grid-template-columns:repeat(2,1fr);gap:11px}.tile{appearance:none;border:1px solid var(--line);background:#fff;border-radius:20px;padding:16px 13px;text-align:left;min-height:126px;box-shadow:0 4px 14px rgba(31,54,84,.04)}.tile:active{transform:scale(.98)}.icon{font-size:29px}.tile strong{display:block;margin-top:10px;font-size:15px}.tile small{display:block;margin-top:4px;color:var(--muted);line-height:1.35}
-.panel{display:none;background:#fff;border:1px solid var(--line);border-radius:22px;padding:18px;margin-top:14px;position:relative}.panel.show{display:block}.close{position:absolute;right:11px;top:10px;border:0;background:#eef3f8;width:34px;height:34px;border-radius:50%;font-size:21px;cursor:pointer}.panel h3{margin:0 42px 8px 0}.panel p{color:var(--muted);line-height:1.5}.item{padding:12px;background:#f7f9fc;border-radius:13px;margin:8px 0}.action{border:0;background:var(--blue);color:#fff;border-radius:13px;padding:12px 14px;font-weight:750;margin-top:8px;cursor:pointer}
+.panel{display:none;background:#fff;border:1px solid var(--line);border-radius:22px;padding:18px;margin-top:14px;position:relative}.panel.show{display:block}.close{position:absolute;right:11px;top:10px;border:0;background:#eef3f8;width:34px;height:34px;border-radius:50%;font-size:21px;cursor:pointer;z-index:3}.panel h3{margin:0 42px 8px 0}.panel p{color:var(--muted);line-height:1.5}.item{padding:12px;background:#f7f9fc;border-radius:13px;margin:8px 0}.action{border:0;background:var(--blue);color:#fff;border-radius:13px;padding:12px 14px;font-weight:750;margin-top:8px;cursor:pointer}
+
+@media(max-width:600px){
+  .panel{display:none!important}
+}
 .nav{position:fixed;bottom:0;left:50%;transform:translateX(-50%);width:min(520px,100%);background:rgba(255,255,255,.96);border-top:1px solid var(--line);display:grid;grid-template-columns:repeat(4,1fr);padding:8px 5px calc(8px + env(safe-area-inset-bottom));z-index:10}.nav button{border:0;background:transparent;text-align:center;font-size:11px;color:var(--muted);cursor:pointer}.nav span{font-size:21px;display:block;margin-bottom:3px}.nav .active{color:var(--blue);font-weight:700}
 
 .family-hero{background:linear-gradient(145deg,#eef5ff,#fff);border:1px solid #d9e6f6;border-radius:18px;padding:15px;margin:10px 0}
@@ -33,13 +37,33 @@
 .danger{border:1px solid #f1c9c9;background:#fff4f4;color:#9b3030;border-radius:13px;padding:11px 13px;font-weight:750;cursor:pointer}
 .demo-note{font-size:12px;color:var(--muted);background:#f7f9fc;border-radius:12px;padding:10px;margin-top:10px;line-height:1.4}
 
+
+.inline-panel{
+  grid-column:1/-1;
+  background:#fff;
+  border:1px solid var(--line);
+  border-radius:18px;
+  padding:15px;
+  margin:0 0 2px;
+  box-shadow:0 8px 24px rgba(31,54,84,.08);
+}
+.inline-panel h3{margin:0 38px 7px 0;font-size:17px}
+.inline-panel p{color:var(--muted);line-height:1.45;margin:0 0 10px}
+.inline-close{
+  float:right;border:0;background:#eef3f8;width:32px;height:32px;
+  border-radius:50%;font-size:19px;cursor:pointer;margin:-3px -2px 4px 8px
+}
+.inline-panel .item{margin:7px 0}
+.quick-inline{margin:8px 0 14px}
+.summary-inline{grid-column:1/-1}
+
 footer{text-align:center;color:#8995a5;font-size:11px;padding:26px 12px 0}
 </style>
 </head>
 <body>
 <div class="app">
 <header class="hero">
-<div class="top"><div class="brand"><div class="mark">✉️</div>Posta-Ime</div><div class="badge">v0.4</div></div>
+<div class="top"><div class="brand"><div class="mark">✉️</div>Posta-Ime</div><div class="badge">v0.4.2</div></div>
 <h1>Posta jote, në një vend.</h1>
 <p>Dokumente, fatura, njoftime dhe shërbime të rëndësishme — të sigurta dhe gjithmonë me ty.</p>
 <div class="flagline"><span class="star">★ ★ ★ ★ ★ ★</span><span>Projekt digjital për Kosovën 🇽🇰</span></div>
@@ -87,7 +111,7 @@ footer{text-align:center;color:#8995a5;font-size:11px;padding:26px 12px 0}
 <button class="tile" data-key="profile"><span class="icon">🔐</span><strong>Siguria</strong><small>Identiteti, hyrja dhe privatësia.</small></button>
 </div>
 <div class="panel" id="panel"><button class="close" id="close">×</button><div id="panelContent"></div></div>
-<footer>Posta-Ime © 2026 · Prototip konceptual për Kosovën · v0.4</footer>
+<footer>Posta-Ime © 2026 · Prototip konceptual për Kosovën · v0.4.2</footer>
 </main>
 <nav class="nav">
 <button id="navHome" class="active"><span>🏠</span>Kryefaqja</button>
@@ -127,10 +151,26 @@ const results={
 inbox:"Posta u hap në versionin demo.",bills:"Faturat u hapën.",pay:"Demo: pagesa u konfirmua dhe kuponi u ruajt në Arkiv.",government:"Dokumentet institucionale u hapën.",bank:"Dokumentet bankare u hapën.",salary:"Fletëpagesat u hapën.",contracts:"Kontratat u hapën.",sign:"Demo: dokumenti u përgatit për identifikim dhe nënshkrim.",receipts:"Kuponët u hapën.",archive:"Arkivi personal u hap.",family:"Demo: mund të caktohet një autorizim i kufizuar për një familjar.",insurance:"Policat e sigurimit u hapën.",health:"Dokumentet shëndetësore u hapën me qasje të mbrojtur.",vehicle:"Dokumentet e automjetit u hapën.",education:"Dokumentet e arsimit u hapën.",notifications:"Të gjitha njoftimet u hapën.",search:"Demo: kërkimi për “KESCO” gjeti 4 dokumente.",upload:"Demo: dokumenti u zgjodh dhe është gati për ruajtje.",receiptsauto:"Kuponët automatikë u hapën.",paylater:"Demo: pagesa u caktua për datën e skadimit.",sharebill:"Demo: fatura u nda me një familjar.",healthvisit:"Termini u hap dhe mund të shtohet në kalendar.",senders:"Lista e dërguesve u hap.",profile:"Cilësimet e sigurisë u hapën."
 };
 
-function openFamilyPanel(){
- const panel=document.getElementById("panel");
- const content=document.getElementById("panelContent");
- content.innerHTML=`
+
+function closeInlinePanels(){
+ document.querySelectorAll(".inline-panel").forEach(p=>p.remove());
+}
+
+function basePanelHTML(key){
+ const d=data[key];
+ return `
+   <button class="inline-close" aria-label="Stäng">×</button>
+   <h3>${d[0]}</h3>
+   <p>${d[1]}</p>
+   ${d[2].map(x=>`<div class="item">${x}</div>`).join("")}
+   <button class="action inline-action">${d[3]}</button>
+   <div class="inline-result"></div>
+ `;
+}
+
+function familyPanelHTML(){
+ return `
+   <button class="inline-close" aria-label="Stäng">×</button>
    <h3>🌍 Familja & Diaspora</h3>
    <p>Ndihmo një familjar pa i dhënë qasje të plotë në llogarinë tënde.</p>
 
@@ -153,14 +193,14 @@ function openFamilyPanel(){
 
    <span class="family-label">Çfarë mund të bëjë familjari?</span>
    <div class="item">
-     <label class="permission"><span>📬 Shiko dokumentet</span><input id="permDocs" type="checkbox" checked></label>
-     <label class="permission"><span>💡 Shiko faturat</span><input id="permBills" type="checkbox" checked></label>
-     <label class="permission"><span>💳 Paguaj faturat</span><input id="permPay" type="checkbox"></label>
-     <label class="permission"><span>🛡️ Shiko sigurimet</span><input id="permInsurance" type="checkbox"></label>
+     <label class="permission"><span>📬 Shiko dokumentet</span><input class="permDocs" type="checkbox" checked></label>
+     <label class="permission"><span>💡 Shiko faturat</span><input class="permBills" type="checkbox" checked></label>
+     <label class="permission"><span>💳 Paguaj faturat</span><input class="permPay" type="checkbox"></label>
+     <label class="permission"><span>🛡️ Shiko sigurimet</span><input class="permInsurance" type="checkbox"></label>
    </div>
 
    <span class="family-label">Afati i autorizimit</span>
-   <select id="familyExpiry" class="family-select">
+   <select class="familyExpiry family-select">
      <option value="30 ditë">30 ditë</option>
      <option value="3 muaj">3 muaj</option>
      <option value="1 vit" selected>1 vit</option>
@@ -168,57 +208,76 @@ function openFamilyPanel(){
    </select>
 
    <div class="family-actions">
-     <button class="action" id="saveFamily">Ruaj autorizimin</button>
-     <button class="secondary" id="newFamily">+ Shto familjar</button>
-     <button class="danger" id="revokeFamily">Hiq autorizimin</button>
+     <button class="action saveFamily">Ruaj autorizimin</button>
+     <button class="secondary newFamily">+ Shto familjar</button>
+     <button class="danger revokeFamily">Hiq autorizimin</button>
    </div>
-   <div id="familyResult"></div>
+   <div class="familyResult"></div>
    <div class="demo-note">🔐 Para aktivizimit, identiteti verifikohet. Pronari mund t’i ndryshojë ose t’i heqë lejet në çdo kohë.</div>
  `;
- panel.classList.add("show");
-
- document.getElementById("saveFamily").onclick=()=>{
-   const perms=[];
-   if(document.getElementById("permDocs").checked) perms.push("dokumentet");
-   if(document.getElementById("permBills").checked) perms.push("faturat");
-   if(document.getElementById("permPay").checked) perms.push("pagesat");
-   if(document.getElementById("permInsurance").checked) perms.push("sigurimet");
-   const expiry=document.getElementById("familyExpiry").value;
-   document.getElementById("familyResult").innerHTML=
-     `<div class="item" style="margin-top:12px"><b>✓ Autorizimi u ruajt.</b><br><small>Qasje: ${perms.length?perms.join(", "):"asnjë leje"} · Afati: ${expiry}</small></div>`;
- };
-
- document.getElementById("newFamily").onclick=()=>{
-   document.getElementById("familyResult").innerHTML=
-     `<div class="item" style="margin-top:12px"><b>Demo:</b> Ftesa për një familjar të ri është gati për verifikim.</div>`;
- };
-
- document.getElementById("revokeFamily").onclick=()=>{
-   document.getElementById("familyResult").innerHTML=
-     `<div class="item" style="margin-top:12px;background:#fff4f4"><b>Autorizimi u hoq.</b><br><small>Familjari nuk ka më qasje në dokumente ose fatura.</small></div>`;
- };
-
- panel.scrollIntoView({behavior:"smooth",block:"center"});
 }
 
-function openPanel(key){
- if(key==="family"){openFamilyPanel();return;}
- const d=data[key];
- document.getElementById("panelContent").innerHTML=`<h3>${d[0]}</h3><p>${d[1]}</p>${d[2].map(x=>`<div class="item">${x}</div>`).join("")}<button class="action" id="panelAction">${d[3]}</button><div id="actionResult"></div>`;
- document.getElementById("panel").classList.add("show");
- document.getElementById("panelAction").onclick=()=>document.getElementById("actionResult").innerHTML=`<div class="item" style="margin-top:12px"><b>✓</b> ${results[key]}</div>`;
- document.getElementById("panel").scrollIntoView({behavior:"smooth",block:"center"});
+function openInline(key, sourceEl){
+ closeInlinePanels();
+
+ const panel=document.createElement("div");
+ panel.className="inline-panel";
+
+ if(sourceEl.classList.contains("quickpill")) panel.classList.add("quick-inline");
+ if(sourceEl.classList.contains("summary-card")) panel.classList.add("summary-inline");
+
+ panel.innerHTML = key==="family" ? familyPanelHTML() : basePanelHTML(key);
+
+ // Place directly after the clicked item.
+ sourceEl.insertAdjacentElement("afterend", panel);
+
+ panel.querySelector(".inline-close").onclick=()=>panel.remove();
+
+ if(key==="family"){
+   panel.querySelector(".saveFamily").onclick=()=>{
+     const perms=[];
+     if(panel.querySelector(".permDocs").checked) perms.push("dokumentet");
+     if(panel.querySelector(".permBills").checked) perms.push("faturat");
+     if(panel.querySelector(".permPay").checked) perms.push("pagesat");
+     if(panel.querySelector(".permInsurance").checked) perms.push("sigurimet");
+     const expiry=panel.querySelector(".familyExpiry").value;
+     panel.querySelector(".familyResult").innerHTML=
+       `<div class="item" style="margin-top:12px"><b>✓ Autorizimi u ruajt.</b><br><small>Qasje: ${perms.length?perms.join(", "):"asnjë leje"} · Afati: ${expiry}</small></div>`;
+   };
+   panel.querySelector(".newFamily").onclick=()=>{
+     panel.querySelector(".familyResult").innerHTML=
+       `<div class="item" style="margin-top:12px"><b>Demo:</b> Ftesa për një familjar të ri është gati për verifikim.</div>`;
+   };
+   panel.querySelector(".revokeFamily").onclick=()=>{
+     panel.querySelector(".familyResult").innerHTML=
+       `<div class="item" style="margin-top:12px;background:#fff4f4"><b>Autorizimi u hoq.</b><br><small>Familjari nuk ka më qasje në dokumente ose fatura.</small></div>`;
+   };
+ } else {
+   panel.querySelector(".inline-action").onclick=()=>{
+     panel.querySelector(".inline-result").innerHTML=
+       `<div class="item" style="margin-top:12px"><b>✓</b> ${results[key]}</div>`;
+   };
+ }
 }
-document.querySelectorAll(".tile,.quick,.quickpill").forEach(el=>el.addEventListener("click",()=>openPanel(el.dataset.key)));
-document.getElementById("close").onclick=()=>document.getElementById("panel").classList.remove("show");
+
+document.querySelectorAll(".tile,.quick,.quickpill").forEach(el=>{
+ el.addEventListener("click",()=>openInline(el.dataset.key,el));
+});
+
+// Legacy panel is kept hidden to avoid breaking older structure.
+document.getElementById("close").onclick=()=>{
+ document.getElementById("panel").classList.remove("show");
+ document.body.classList.remove("panel-open");
+};
+
 function setNavActive(id){
  document.querySelectorAll(".nav button").forEach(b=>b.classList.remove("active"));
  document.getElementById(id).classList.add("active");
 }
 document.getElementById("navHome").onclick=()=>{setNavActive("navHome");window.scrollTo({top:0,behavior:"smooth"});}
-document.getElementById("navInbox").onclick=()=>{setNavActive("navInbox");openPanel("inbox");}
-document.getElementById("navNotifications").onclick=()=>{setNavActive("navNotifications");openPanel("notifications");}
-document.getElementById("navProfile").onclick=()=>{setNavActive("navProfile");openPanel("profile");}
+document.getElementById("navInbox").onclick=()=>{setNavActive("navInbox");openInline("inbox",document.querySelector(".summary-card[data-key=\"inbox\"]"));}
+document.getElementById("navNotifications").onclick=()=>{setNavActive("navNotifications");openInline("notifications",document.querySelector(".tile[data-key=\"notifications\"]"));}
+document.getElementById("navProfile").onclick=()=>{setNavActive("navProfile");openInline("profile",document.querySelector(".tile[data-key=\"profile\"]"));}
 </script>
 </body>
 </html>
